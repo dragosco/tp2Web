@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
-import utilisateurs.gestionnaires.GestionnaireUtilisateurs;  
+import utilisateurs.gestionnaire.GestionnaireUtilisateurs;  
 import utilisateurs.modeles.Utilisateur;  
 
 /**

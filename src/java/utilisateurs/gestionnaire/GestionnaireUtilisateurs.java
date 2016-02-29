@@ -1,5 +1,5 @@
 
-package utilisateurs.gestionnaires;
+package utilisateurs.gestionnaire;
 
 import java.util.Collection;
 import javax.ejb.Stateless;
