@@ -40,9 +40,7 @@
         </header>
     <main>
         <nav>
-            <h2>Menu de gestion des utilisateurs</h2>
-            
-    
+            <h2>Menu de gestion des utilisateurs</h2>     
             
             <!--<a class="menu" id="linkTest "href="ServletUsers?action=creerUtilisateursDeTest">Créer <input type="text" name="nbUsers" id="nbUsers" /> utilisateurs de test-->
 
@@ -76,17 +74,25 @@
                     <button type="submit" value="Chercher" name="submit">Chercher</button>
                 </fieldset>
             </form>
-
             
             <form class="menu" id="formModif" action="ServletUsers" method="get">
                 <fieldset>
                     <legend class="form">Modifier un utilisateur :</legend>
-                    <label for="loginModif" class="formElem">Login : </label><input type="text" name="login" id="loginmMdif"/><br>
-                    <label for="nomModif" class="formElem">Nom : </label><input type="text" name="nom" id="nommodif"/><br>
+                    <label for="loginModif" class="formElem">Login : </label><input type="text" name="login" id="loginModif"/><br>
+                    <label for="nomModif" class="formElem">Nom : </label><input type="text" name="nom" id="nomModif"/><br>
                     <label for="prenomModif" class="formElem">Prénom : </label><input type="text" name="prenom" id="prenomModif"/><br>
                     <label for="passModif" class="formElem">Password : </label><input type="text" name="password" id="passModif"/><br>
                     <input type="hidden" name="action" value="updateUtilisateur"/><br>
                     <button type="submit" value="Mettre à jour" name="submit">Mettre à jour</button>
+                </fieldset>
+            </form>
+            
+            <form class="menu" id="formSuppression" action="ServletUsers" method="get">
+                <fieldset>
+                    <legend class="form">Supprimer un utilisateur :</legend>
+                    <label for="loginSuppr" class="formElem">Login : </label><input type="text" name="login" id="loginSuppr"/><br>
+                    <input type="hidden" name="action" value="supprimerUtilisateur"/><br>
+                    <button type="submit" value="Supprimer" name="submit">Supprimer</button>
                 </fieldset>
             </form>
             
@@ -102,55 +108,61 @@
             </c:if>
         <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
             <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
-            <h2 class="liste">Liste des utilisateurs</h2>
+                <h2 class="liste">Liste des utilisateurs</h2>
 
-            <a class="liste" href="ServletUsers?action=listerLesUtilisateurs&first=${param.first}&nb=${param.nb}">Actualiser</a>
+                <a class="liste" href="ServletUsers?action=listerLesUtilisateurs&first=${param.first}&nb=${param.nb}&total=${param.total}">Actualiser</a>
 
-            <div id="zoneAvance">
-                <c:if test="${param.first >= 10}">
-                    <div  class="avanceButton" id="previewButton"><a href="ServletUsers?action=listerLesUtilisateurs&first=${param.first}&nb=${param.nb}&avance=preview">Preview</a></div>
-                </c:if>
-                
-                
-                <div  class="avanceButton" id="nextButton"><a href="ServletUsers?action=listerLesUtilisateurs&first=${param.first}&nb=${param.nb}&avance=next">Next</a></div>
-            </div>
-            <article>
-                
-                
-                <table>
-                    <!-- La ligne de titre du tableau des comptes -->
-                    <tr id="attributsTableau">
-                        <td class="attributsTableau">Login</td>
-                        <td class="attributsTableau">Nom</td>
-                        <td class="attributsTableau">Prénom</td>
-                        <td class="attributsTableau">Password</td>
-                    </tr>
 
-                    <!-- Ici on affiche les lignes, une par utilisateur -->
-                    <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->
-                    <c:set var="total" value="0"/>
+                <article>                
 
-                    <c:forEach var="u" items="${requestScope['listeDesUsers']}">
-                        <tr id="contenuTableau">
-                            <td class="elemTableau">${u.login}</td>
-                            <td class="elemTableau">${u.lastname}</td>
-                            <td class="elemTableau">${u.firstname}</td>
-                            <td class="elemTableau">${u.password}</td>
-                            <!-- On compte le nombre de users -->
-                            <c:set var="total" value="${total+1}"/>
+                    <table>
+                        <!-- La ligne de titre du tableau des comptes -->
+                        <tr id="attributsTableau">
+                            <td class="attributsTableau">Login</td>
+                            <td class="attributsTableau">Nom</td>
+                            <td class="attributsTableau">Prénom</td>
+                            <td class="attributsTableau">Password</td>
                         </tr>
-                    </c:forEach>
-                        
-                    <!-- Affichage du solde total dans la dernière ligne du tableau -->
-                    <tr id="footerTableau">
-                        <td>TOTAL</td>
-                        <td colspan="3" id="totalCell">${param.first} - ${param.first + param.nb}</td>
-                    </tr>
-                </table>
-                        
-                        
-            </article>
-            
+
+                        <!-- Ici on affiche les lignes, une par utilisateur -->
+                        <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->
+                        <c:set var="total" value="0"/>
+
+                        <c:forEach var="u" items="${requestScope['listeDesUsers']}">
+                            <tr id="contenuTableau">
+                                <td class="elemTableau">${u.login}</td>
+                                <td class="elemTableau">${u.lastname}</td>
+                                <td class="elemTableau">${u.firstname}</td>
+                                <td class="elemTableau">${u.password}</td>
+                                <!-- On compte le nombre de users -->
+                                <c:set var="total" value="${total+1}"/>
+                            </tr>
+                        </c:forEach>
+
+                        <!-- Affichage du solde total dans la dernière ligne du tableau -->
+                        <tr id="footerTableau">
+                            <td>TOTAL</td>
+                            <td colspan="3" id="totalCell">${param.first} - ${param.first + total}</td>
+                        </tr>
+                    </table>
+                </article>
+
+                <div id="zoneAvance">
+                    <c:if test="${param.first >= param.nb}">
+                        <div class="avanceButton" id="previewButton">
+                            <a href="ServletUsers?action=preview&first=${param.first}&nb=${param.nb}&total=${param.total}">Preview</a>
+                            <!-- &avance=preview -->
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.first + param.nb < param.total}">
+                        <div class="avanceButton" id="nextButton">
+                            <a href="ServletUsers?action=next&first=${param.first}&nb=${param.nb}&total=${param.total}">Next</a>
+                            <!-- &avance=next -->
+                        </div>
+                    </c:if>
+                </div>
+                    
             </c:if>
             
         </section>

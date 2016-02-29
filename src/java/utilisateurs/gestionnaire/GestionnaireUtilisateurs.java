@@ -1,9 +1,7 @@
 
-package utilisateurs.gestionnaire;
+package utilisateurs.gestionnaires;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -63,8 +61,13 @@ public class GestionnaireUtilisateurs {
         q.setParameter("nom", lastname);
         q.setParameter("prenom", firstname);
         q.setParameter("password", password);
+        q.executeUpdate();        
+    }
+    
+    public void supprimerUtilisateur(String login) {
+        Query q = em.createQuery("delete from Utilisateur u where u.login = :login");
+        q.setParameter("login", login);
         q.executeUpdate();
-        
     }
     
     public boolean verifierPassword (String login, String password) {
