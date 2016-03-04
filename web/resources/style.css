@@ -1,208 +1,259 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 12 févr. 2016, 15:23:21
     Author     : Dragos
 */
-header, section, footer, nav, article {
-    display: block; 
-    font-family: Cambria;
+#wrapper {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-
+/* 
+    HEADER (ne change pas)
+*/
 header {
     color: firebrick;
-    text-align: center;    
-    width: 70%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
+    font-family: "Century Gothic", sans-serif;
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+#logo {vertical-align: middle;}
+h1 {font-size: 4vw; margin: auto auto;}
 
-#headerleft {
-    float: left;
-    width: 76%;
-    height: 150px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#logo {
-    float: left;
-    width: 18%;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#titre {
-    font-size: 27px;
-    float: left;
-    width: 82%;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#log-inBlock {
-    float: left;
-    width: 20%;
-    height: 150px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 4%;
-}
-
-#loginFieldset {
-    width: 20%;
-    border: none;
-    box-shadow: none;
-    margin: 10px auto auto auto;
-}
-
-button {
-    float:right;
-}
-p.formLogin {
-    margin-top: 0;
-    font-size: 20px;
-    color: firebrick;
-    font-weight: bold;
-}
-label.formElemLogin {
-    display: block;
-    font-size: 17px;
-    color: darkcyan;
-    text-align: right;
-    float: left;
-    width: 80px;
-}
-input.loginInput {
-    width: 65px;
-}
-main {
-    width: 70%;
+#wrapper {
+    width: 60%;
+    height: 1200px;
     margin: 0 auto;
 }
-
-nav {
-    float: left;
-    width: 40%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 h2 {
     text-align: center;
-    color: darkcyan;
-    font-size: 30px;
-}
-
-p.message {
+    font-size: 1.7vw;
+    color: #dc4747;
     
-    text-align: justify;
-    font-size: 15px;
-    margin-left: 20%;
-    margin-right: 20%;
 }
-
-fieldset {
-    
-    width: 260px;
-    border: 2px solid darkred;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
+/*
+    PAGE D'AUTHENTIFICATION
+*/
+#loginBlock, #formCreationBlock {
+    width: 30%;
+    margin: 20px auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-label.formElem {
+/*
+    LOGIN
+*/
+.formElemLogin h3 {
+    background-color: antiquewhite;
+    color: firebrick;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    padding: 10px;
+}
+.formElemLogin input {
     display: block;
-    float: left;
-    width: 80px;
+    width: 70%;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px darkgray solid;
+    margin: 10px auto;
+}
+.formElemLogin button {
+    display: block;
+    width: 100%;
+    height:45px;
+    float: none;
+    background-color: firebrick;
+    color: blanchedalmond;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 14px;
+    border: none;
+    margin: 10px auto;
+}
+.formElemLogin button:hover {
+    background-color: #dc4747;
+    cursor: pointer;
+}
+/*
+    CREER COMPTE
+*/
+.formElemBlock h3 {
+    background-color: antiquewhite;
+    color: darkcyan;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    padding: 10px;
+}
+.formElemBlock input {
+    display: block;
+    width: 70%;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px darkgray solid;
+    margin: 10px auto;
+}
+.formElemBlock button {
+    display: block;
+    width: 100%;
+    height:45px;
+    background-color: darkcyan;
+    color: blanchedalmond;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 14px;
+    border: none;
+    margin: 10px auto;
+}
+.formElemBlock button:hover {
+    background-color: cadetblue;
+    cursor: pointer;
 }
 
+/*
+    BLOC DES FONCTIONNALITES
+*/
+aside {
+    float: left;
+    width: 35%;
+    margin-top: 40px;
+}
+#functionalityBlock1, #functionalityBlock2, #functionalityBlock3, #functionalityBlock4 {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#testblock {
+    display: block;
+    text-align: center;
+}
 #labelTest {
     display: inline;
+    margin: 0 auto;
     float: none;
+    font-size: 1.1vw;
 }
-
-input {
-    float: right;
-}
-
 #nbUsers {
-    float: none;
+    display: inline-block;
     width: 50px;
+    padding: 5px;
+}
+.functionalityBlock p {
+    text-align: center;
+    font-size: 1.1vw;
+    color: #dc4747;
+}
+.functionalityBlock h2 {
+    background-color: antiquewhite;
+    color: darkcyan;
+    text-align: center;
+    font-size: 1.2vw;
+    padding: 5px;
+}
+.functionalityBlock input {
+    display: block;
+    width: 80%;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px darkgray solid;
+    margin: 8px auto;
+}
+.functionalityBlock button {
+    display: block;
+    width: 83%;
+    height: 50px;
+    background-color: darkcyan;
+    color: blanchedalmond;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px;
+    border: none;
+    margin: 20px auto 0 auto;
+}
+.functionalityBlock button:hover {
+    background-color: cadetblue;
+    cursor: pointer;
 }
 
-legend {
-    font-size: 20px;
-    color: firebrick;
-}
 
+/*
+    BLOC TABLEAU USERS
+*/
 section {
     float: left;
-    width: 56%;
+    width: 61%;
+    margin-top: 40px;
     margin-left: 4%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-a {
-    
+a.liste {
     background-color: buttonhighlight;
     color: darkcyan;
+    font-size: 1.1vw;
     text-decoration: none;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 5px;
+    padding: 5px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-a:hover {
+a.liste:hover {
     cursor: pointer;
     background-color: highlight;
 }
 
-a.liste {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
+nav {
+    width: 100%;
+    margin-top: 10px;
     margin-bottom: 10px;
+    
 }
-
-a.menu {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
+#previewBlock, #previewBlockBlank {
+    float: left;
+    width: 25%;
+    height: 50px;
+    text-align: center;
+    margin-left: 24.8%;
+    margin-right: 0.2%;
 }
-
-#zoneAvance {
-
-    width: 30%;
-    margin-top: 45px;
-    margin-left: auto;
-    margin-right: auto;
+#previewBlock {
+    background-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#previewBlockBlank {
+    background-color: transparent;
+}
+#previewBlock:hover, #nextBlock:hover {
+    background-color: cadetblue;
+    cursor: pointer;
+}
+#nextBlock {
+    float: left;
+    width: 25%;
+    height: 50px;
+    text-align: center;
+    background-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-right: 24.8%;
+    margin-left: 0.2%;
 }
 
 #previewButton {
-    float: left;
-    width: 55%;
+    display: block;
+    color: antiquewhite;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 50px;
 }
 
 #nextButton {
-    float: left;
-    margin-left: 5%;
-    width: 40%;
-}
-
-article {
-    margin-top: 100px;
-    margin-bottom: 15px;
+    display: block;
+    color: antiquewhite;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 50px;
 }
 
 h4, h5 {
@@ -216,11 +267,10 @@ h5 {
     color: red;
 }
 table {
-    
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     border: 2px brown solid;
     border-collapse: collapse;
+    margin-top: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -231,7 +281,7 @@ table {
 }
 
 tr:nth-child(even) {
-    background-color: navajowhite;
+    background-color: antiquewhite;
 }
 
 td {

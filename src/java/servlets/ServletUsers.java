@@ -44,11 +44,11 @@ public class ServletUsers extends HttpServlet {
             
             if (action.equals("authentification")) {
                 if (gestionnaireUtilisateurs.verifierPassword(request.getParameter("login"), request.getParameter("password"))) {
-                    forwardTo = "index.jsp?action=authentificationReussie";
+                    forwardTo = "index.jsp?action=authentification&etat=reussie";
                     message = "Authetification réussie";
                 }
                 else {
-                    forwardTo = "index.jsp?action=authentificationNonReussie";
+                    forwardTo = "index.jsp?action=authentification&etat=nonreussie";
                     message = "Mot de passe incorrect";
                 }
             } else { 
@@ -63,9 +63,9 @@ public class ServletUsers extends HttpServlet {
                     message = "Détails des utilisateurs";
                 } else {                    
                     int first = 0;
-                    int nb = 10;
+                    int nb = 20;
                     String avance = "";
-
+                    total = gestionnaireUtilisateurs.getAllUsers().size();
                     if(request.getParameter("first") != null && !request.getParameter("first").isEmpty()) {
                         first = Integer.parseInt(request.getParameter("first"));
                     }
@@ -80,32 +80,37 @@ public class ServletUsers extends HttpServlet {
                         gestionnaireUtilisateurs.creerUtilisateursDeTest(request.getParameter("nbUsers"));
                         //liste = gestionnaireUtilisateurs.getAllUsers();  
                         //request.setAttribute("listeDesUsers", liste);
-                        //forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total;  
                         message = "Liste des utilisateurs";
                     } else if (action.equals("creerUnUtilisateur")) {
                         gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("prenom"), request.getParameter("nom"), request.getParameter("login"), request.getParameter("password"));
                         //total = gestionnaireUtilisateurs.getAllUsers().size();
                         //liste = gestionnaireUtilisateurs.getAllUsers();
                         //request.setAttribute("listeDesUsers", liste);
-                        //forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                        forwardTo = "index.jsp?action=authentification";
                         message = "Liste des utilisateurs";
                     } else if (action.equals("updateUtilisateur")) {
                         gestionnaireUtilisateurs.modifierUtilisateur(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"), request.getParameter("password"));
                         //liste = gestionnaireUtilisateurs.getAllUsers();
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; 
                         message = "Liste mise à jour";
                     } else if(action.equals("supprimerUtilisateur")) {
                         gestionnaireUtilisateurs.supprimerUtilisateur(request.getParameter("login"));
                         //total = gestionnaireUtilisateurs.getAllUsers().size();
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; 
                         message = "Utilisateur supprimé";
                     } else if (action.equals("listerLesUtilisateurs")) {  
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; 
                         message = "Liste des utilisateurs";
                     } else if (action.equals("preview")) {  
                         message = "Liste des utilisateurs";
                         //avance += "&avance=preview";
                         first -= nb;
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; 
                     } else if (action.equals("next")) {  
                         //avance += "&avance=next";
                         first += nb;
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; 
                         message = "Liste des utilisateurs";
                     }
 
@@ -122,10 +127,8 @@ public class ServletUsers extends HttpServlet {
 
                     liste = gestionnaireUtilisateurs.getAllUsers(first, nb);  
                     request.setAttribute("listeDesUsers", liste);                    
-                    total = gestionnaireUtilisateurs.getAllUsers().size();
-                    //total = liste.size();
                     
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb + "&total=" + total; // + avance;
+                    //total = liste.size();
 
                     //forwardTo = "index.jsp?action=listerLesUtilisateurs&first=" + first + "&nb=" + nb;
                     //message = "Liste des utilisateurs";

@@ -26,7 +26,7 @@ public class Utilisateur implements Serializable {
     private String firstname;  
     private String lastname;
     
-    @Column(unique=true)
+    //@Column(unique=true)
     private String login;
     
     private String password; 
